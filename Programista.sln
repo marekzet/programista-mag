@@ -11,7 +11,7 @@ Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Domain", "Domain Driven Des
 EndProject
 Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Persistance", "Domain Driven Design\Better Domain Models With EF Core 2.0\Persistance\Persistance.csproj", "{AD85F2EA-11D4-4420-80BD-31E5C2AC5F72}"
 EndProject
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Client", "Client\Client.csproj", "{D25414AC-E4A6-4EE0-A6B3-1145538D3F19}"
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Client", "Domain Driven Design\Better Domain Models With EF Core 2.0\Client\Client.csproj", "{D25414AC-E4A6-4EE0-A6B3-1145538D3F19}"
 EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
