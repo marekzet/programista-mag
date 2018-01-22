@@ -4,3 +4,5 @@ This repository contains source code to my articles written for Polish magazine 
 ### Better Domain Models with EF Core 2.0
 The source code presents how to design and implement domain models using Entity Framework Core 2.0 by hiding some infrastructural details 
 of entities and encapsulating logic by replacing public properties with private fields and using read only collections.
+
+_To run project change connection string in the appsettings.json file to your instance of Sql Server_.
