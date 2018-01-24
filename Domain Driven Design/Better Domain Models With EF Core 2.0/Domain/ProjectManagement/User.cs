@@ -26,7 +26,7 @@ namespace Domain.ProjectManagement
         public void SetAddress(Address address)
         {
             if (address == null)
-                throw new DomainException("Invalid address.");
+                throw new AddressException("Invalid address.");
 
             Address = address;
         }

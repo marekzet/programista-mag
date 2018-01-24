@@ -1,4 +1,6 @@
 ﻿using Domain.SharedKernel;
+using System.Collections.Generic;
+using System.Linq;
 
 namespace Domain.ProjectManagement
 {
@@ -14,6 +16,18 @@ namespace Domain.ProjectManagement
 
         public TaskStatus(int id, string name) : base(id, name)
         {
+        }
+
+        internal static IEnumerable<TaskStatus> List() =>
+            new[] { New, InProgress, Done };
+
+        internal static TaskStatus From(int id)
+        {
+            var status = List().SingleOrDefault(s => s.Id == id);
+            if (status == null)
+                throw new TaskException("Invalid value of TaskStatus.");
+
+            return status;
         }
     }
 }

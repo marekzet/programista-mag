@@ -8,6 +8,11 @@ namespace Domain.ProjectManagement
         private string description;
         private int statusId;
 
+        public TaskStatus Status
+        {
+            get { return TaskStatus.From(statusId); }
+        }
+
         public int Id { get; private set; }
 
         // Required by EF
@@ -28,7 +33,7 @@ namespace Domain.ProjectManagement
         public void Rename(string name)
         {
             if (string.IsNullOrWhiteSpace(name))
-                throw new DomainException("Invalid task name.");
+                throw new TaskException("Invalid task name.");
 
             this.name = name;
         }

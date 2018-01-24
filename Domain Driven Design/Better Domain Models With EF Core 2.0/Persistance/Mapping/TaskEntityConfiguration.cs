@@ -17,6 +17,8 @@ namespace Persistance.Mapping
             builder.Property("description").HasColumnType("varchar(max)").HasColumnName("Description");
             builder.Property<int>("statusId").IsRequired().HasColumnName("StatusId");
 
+            builder.Ignore(t => t.Status);
+
             builder.HasOne<TaskStatus>()
                 .WithMany()
                 .HasForeignKey("statusId");

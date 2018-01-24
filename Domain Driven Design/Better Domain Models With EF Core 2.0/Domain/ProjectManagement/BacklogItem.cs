@@ -43,13 +43,21 @@ namespace Domain.ProjectManagement
         public void MakeActive()
         {
             if (statusId == BacklogItemStatus.Archived.Id)
-                throw new DomainException("Cannot set archived backlog to active.");
+                throw new BacklogItemException("Cannot set archived backlog to active.");
 
             statusId = BacklogItemStatus.Active.Id;
         }
 
         public void AddTask(Task task)
         {
+            if (task.Status == TaskStatus.Done)
+                throw new BacklogItemException(
+                  "Cannot add completed task to the backlog.");
+
+            if (task.Status == TaskStatus.InProgress)
+                throw new BacklogItemException(
+                  "Cannot add task in progress to the backlog.");
+
             tasks.Add(task);
         }
 

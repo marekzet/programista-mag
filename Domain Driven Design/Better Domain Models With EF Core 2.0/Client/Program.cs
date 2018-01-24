@@ -27,6 +27,7 @@ namespace Client
             await CreateNewUser();
             var backlogItemId = await CreateNewBacklog();
             await AddTaskToBacklog(backlogItemId);
+            await MakeBacklogActive(backlogItemId);
 
             Console.ReadKey();
         }
@@ -47,7 +48,7 @@ namespace Client
                 .AddScoped<IUserRepository, UserRepository>()
                 .BuildServiceProvider();
 
-            Console.WriteLine("\nDone.\n");
+            Console.WriteLine("Done.\n");
         }
 
         private static void DropDbIfExists()
@@ -113,9 +114,26 @@ namespace Client
             
             var backlogItem = await repo.FindAsync(backlogItemId);
             if (backlogItem == null)
-                throw new BacklogItemNotFoundException($"No backlog with id: {backlogItemId}");
+                throw new BacklogItemException($"No backlog with id: {backlogItemId}");
 
             backlogItem.AddTask(task);
+
+            await repo.SaveAsync(backlogItem);
+
+            Console.WriteLine("Done.\n");
+        }
+
+        private static async System.Threading.Tasks.Task MakeBacklogActive(int backlogItemId)
+        {
+            Console.WriteLine("Making backlog item active...");
+
+            var repo = serviceProvider.GetService<IBacklogItemRepository>();
+
+            var backlogItem = await repo.FindAsync(backlogItemId);
+            if (backlogItem == null)
+                throw new BacklogItemException($"No backlog with id: {backlogItemId}");
+
+            backlogItem.MakeActive();
 
             await repo.SaveAsync(backlogItem);
 
