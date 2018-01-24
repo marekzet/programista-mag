@@ -1,10 +1,14 @@
-﻿using Domain.ProjectManagement;
+﻿using Client.BacklogItemQueries;
+using Dapper;
+using Domain.ProjectManagement;
 using Microsoft.EntityFrameworkCore;
 using Microsoft.Extensions.Configuration;
 using Microsoft.Extensions.DependencyInjection;
 using Persistance;
 using Persistance.Repositories;
 using System;
+using System.Collections.Generic;
+using System.Data.SqlClient;
 using System.IO;
 
 namespace Client
@@ -12,6 +16,7 @@ namespace Client
     public class Program
     {
         private static IServiceProvider serviceProvider;
+        private static string connectionString;
 
         public static void Main(string[] args)
         {
@@ -21,13 +26,14 @@ namespace Client
         private static async System.Threading.Tasks.Task AsyncMain(string[] args)
         {
             InitApp();
-            DropDbIfExists();
-            InitDatabase();
+            //DropDbIfExists();
+            //InitDatabase();
 
-            await CreateNewUser();
-            var backlogItemId = await CreateNewBacklog();
-            await AddTaskToBacklog(backlogItemId);
-            await MakeBacklogActive(backlogItemId);
+            //await CreateNewUser();
+            //var backlogItemId = await CreateNewBacklog();
+            //await AddTaskToBacklog(backlogItemId);
+            //await MakeBacklogActive(backlogItemId);
+            DisplayBacklogsWithTasks();
 
             Console.ReadKey();
         }
@@ -42,10 +48,13 @@ namespace Client
 
             var configuration = configurationBuilder.Build();
 
+            connectionString = configuration.GetConnectionString("DefaultConnection");
             serviceProvider = new ServiceCollection()
-                .AddDbContext<DataContext>(options => options.UseSqlServer(configuration.GetConnectionString("DefaultConnection")))
+                .AddDbContext<DataContext>(options => options.UseSqlServer(connectionString))
+                .AddSingleton<IConfigurationRoot>(configuration)
                 .AddScoped<IBacklogItemRepository, BacklogItemRepository>()
                 .AddScoped<IUserRepository, UserRepository>()
+                .AddScoped<IAllBacklogsQuery, AllBacklogsQuery>()
                 .BuildServiceProvider();
 
             Console.WriteLine("Done.\n");
@@ -138,6 +147,22 @@ namespace Client
             await repo.SaveAsync(backlogItem);
 
             Console.WriteLine("Done.\n");
+        }
+
+        private static void DisplayBacklogsWithTasks()
+        {
+            var query = serviceProvider.GetService<IAllBacklogsQuery>();
+            var backlogs = query.Execute();
+            backlogs
+                .AsList()
+                 .ForEach(item =>
+                 {
+                     Console.WriteLine($"{item.Name} - {item.Description}");
+                     item.Tasks.ForEach(t =>
+                     {
+                         Console.WriteLine($" {t.Id}: {t.Name}");
+                     });
+                 });   
         }
     }
 }
