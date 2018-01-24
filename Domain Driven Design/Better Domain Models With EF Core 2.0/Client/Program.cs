@@ -26,13 +26,13 @@ namespace Client
         private static async System.Threading.Tasks.Task AsyncMain(string[] args)
         {
             InitApp();
-            //DropDbIfExists();
-            //InitDatabase();
+            DropDbIfExists();
+            InitDatabase();
 
-            //await CreateNewUser();
-            //var backlogItemId = await CreateNewBacklog();
-            //await AddTaskToBacklog(backlogItemId);
-            //await MakeBacklogActive(backlogItemId);
+            await CreateNewUser();
+            var backlogItemId = await CreateNewBacklog();
+            await AddTaskToBacklog(backlogItemId);
+            await MakeBacklogActive(backlogItemId);
             DisplayBacklogsWithTasks();
 
             Console.ReadKey();
