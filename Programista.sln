@@ -5,13 +5,13 @@ VisualStudioVersion = 15.0.27130.2020
 MinimumVisualStudioVersion = 10.0.40219.1
 Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "Domain Driven Design", "Domain Driven Design", "{0314039C-46E3-4839-8018-8543927D8B2A}"
 EndProject
-Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "Better Domain Models With EF Core 2.0", "Better Domain Models With EF Core 2.0", "{08C28935-C323-49CA-B6F3-D1B3BB09AB7E}"
+Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "Domain Modelling using EF Core 2.0", "Domain Modelling using EF Core 2.0", "{08C28935-C323-49CA-B6F3-D1B3BB09AB7E}"
 EndProject
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Domain", "Domain Driven Design\Better Domain Models With EF Core 2.0\Domain\Domain.csproj", "{6A9CF0B5-F293-4FFC-A635-4C5DA37E683B}"
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "Domain", "Domain Driven Design\Domain Modelling using EF Core 2.0\Domain\Domain.csproj", "{6A9CF0B5-F293-4FFC-A635-4C5DA37E683B}"
 EndProject
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Persistance", "Domain Driven Design\Better Domain Models With EF Core 2.0\Persistance\Persistance.csproj", "{AD85F2EA-11D4-4420-80BD-31E5C2AC5F72}"
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "Persistance", "Domain Driven Design\Domain Modelling using EF Core 2.0\Persistance\Persistance.csproj", "{AD85F2EA-11D4-4420-80BD-31E5C2AC5F72}"
 EndProject
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Client", "Domain Driven Design\Better Domain Models With EF Core 2.0\Client\Client.csproj", "{D25414AC-E4A6-4EE0-A6B3-1145538D3F19}"
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "Client", "Domain Driven Design\Domain Modelling using EF Core 2.0\Client\Client.csproj", "{D25414AC-E4A6-4EE0-A6B3-1145538D3F19}"
 EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
