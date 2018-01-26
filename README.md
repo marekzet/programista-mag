@@ -1,4 +1,4 @@
-# programista-mag
+# Programista Magazine
 This repository contains source code to my articles written for Polish magazine about software development - Programista.
 ## Domain Driven Design
 ### Domain Modelling using EF Core 2.0
